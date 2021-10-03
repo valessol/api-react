@@ -1,24 +1,18 @@
-const dataStorage = 'dataStorage';
 
-const getLocalStorage = (keyName) => localStorage.getItem(keyName);
-const setLocalStorage = (keyName, value) =>
-  localStorage.setItem(keyName, value);
+// const dataStorage = 'dataStorage';
 
-  //Convertir a JSON
-const dataObj = (string) => JSON.parse(string);
+// const getLocalStorage = (keyName) => localStorage.getItem(keyName);
+// const setLocalStorage = (keyName, value) =>
+//   localStorage.setItem(keyName, value);
 
-//Convertir a string
-const dataString = (obj) => JSON.stringify(obj);
+//   //Convertir a JSON
+// const dataObj = (string) => JSON.parse(string);
 
-const getDataFromApi = async () => {
-    const data = await fetch('https://jsonplaceholder.typicode.com/photos');
-    const dataBaseStorage = await dataString(data);
-    setLocalStorage(dataStorage, dataBaseStorage);
-    return;
-}
-getDataFromApi();
-export const getDataFromStorage = (keyname) => {
-    const getData = getLocalStorage(keyname)
-    const data = dataObj(getData);
-    return data;
+// //Convertir a string
+// const dataString = (obj) => JSON.stringify(obj);
+
+export const getData = async () => {
+  const dataResponse = await fetch ('https://jsonplaceholder.typicode.com/photos')
+  const data = await dataResponse.json()
+  return data
 }
